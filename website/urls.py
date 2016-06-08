@@ -17,10 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 
 from . import views
+from <app> import settings
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
-
 ]
+urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    )
